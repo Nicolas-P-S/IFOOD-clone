@@ -1,4 +1,4 @@
-const PedidoService = require("../services/PedidoService")
+import PedidoService from "../services/PedidoService.js";
 
 const PedidoController = {
     async criarPedido(req, res) {
@@ -24,4 +24,4 @@ const PedidoController = {
 
 }
 
-module.exports = PedidoController
+export default PedidoController

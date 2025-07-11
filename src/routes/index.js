@@ -1,8 +1,8 @@
-const express = require("express")
-const pedidoController = require("../controllers/PedidoController")
+import { Router } from "express"
+import pedidoController from "../controllers/PedidoController.js"
 
-const router = express.Router()
+const router = Router()
 
 router.post('/pedidos', pedidoController.criarPedido)
 
-module.exports = router
+export default router

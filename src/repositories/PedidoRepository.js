@@ -12,4 +12,4 @@ const PedidoRepository = {
     }
 }
 
-module.exports = PedidoRepository
+export default PedidoRepository
