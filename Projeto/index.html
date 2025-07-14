@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Produto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Consultar Produto</h2>
+  
+  <form id="formProduto">
+    <label for="tipo">Tipo:</label>
+    <input type="text" id="tipo" name="tipo" required>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" name="quantidade" required>
+
+    <label for="preco">Preço:</label>
+    <input type="number" step="0.01" id="preco" name="preco" required>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const form = document.getElementById("formProduto");
+    const resultado = document.getElementById("resultado");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const tipo = document.getElementById("tipo").value;
+      const quantidade = document.getElementById("quantidade").value;
+      const preco = document.getElementById("preco").value;
+
+      try {
+        const response = await fetch("http://localhost:3000", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            tipo,
+            quantidade: Number(quantidade),
+            preco: Number(preco)
+          })
+        });
+
+        const data = await response.json();
+        resultado.innerHTML = `<strong>Resposta:</strong> <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        resultado.innerHTML = `<span style="color:red;">Erro ao conectar com a API.</span>`;
+      }
+    });
+  </script>
+</body>
+</html>
