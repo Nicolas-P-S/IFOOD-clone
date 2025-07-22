@@ -1,13 +1,12 @@
-import express, {json} from "express"
-import cors from "cors"
+import express from "express"
+import dotenv from "dotenv"
 import router from "./routes/index.js"
 
 const app = express()
+dotenv.config()
 
-app.use(cors())
-app.use(json())
-
-app.use("/api", router)
+app.use(express.json())
+app.use(router)
 
 app.get("/", (req, res) => {
     res.send("API RODANDO!")

@@ -1,8 +1,8 @@
-import { Router } from "express"
-import pedidoController from "../controllers/PedidoController.js"
+import Router from "express"
+import userRoutes from "./userRoutes.js"
 
 const router = Router()
 
-router.post('/pedidos', pedidoController.criarPedido)
+router.use("/users", userRoutes)
 
 export default router
